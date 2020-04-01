@@ -1,7 +1,7 @@
 package com.example.OwnProject.controller;
 
-import com.example.OwnProject.domain.Role;
-import com.example.OwnProject.domain.User;
+import com.example.OwnProject.Entites.Role;
+import com.example.OwnProject.Entites.User;
 import com.example.OwnProject.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 
@@ -30,6 +29,15 @@ public class RegistrationController {
 
     @PostMapping
     public String addUser(User user, Model model) {
+        if(user.getUsername().equals("")) {
+            model.addAttribute("message", "Input your username");
+            return "registration";
+        }
+        if(user.getPassword().equals("")) {
+            model.addAttribute("message", "Input your password");
+            return "registration";
+        }
+
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
         if (userFromDb != null) {

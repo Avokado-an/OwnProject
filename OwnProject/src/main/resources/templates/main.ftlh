@@ -5,7 +5,8 @@
 
 <@base.page>
     <div><a href="/messages">Messages</a></div>
-    <div><a href="/user">Users</a></div>
+    <div><a href="/userCatalog">Users</a></div>
+    <div><a href="/contacts">Contacts</a></div>
     <@sec.authorize access="isAuthenticated()">
         <div>
             <@log.logout />

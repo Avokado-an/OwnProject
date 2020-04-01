@@ -1,7 +1,7 @@
 package com.example.OwnProject.service.Implementation;
 
-import com.example.OwnProject.domain.Message;
-import com.example.OwnProject.domain.User;
+import com.example.OwnProject.Entites.Message;
+import com.example.OwnProject.Entites.User;
 import com.example.OwnProject.repos.MessageRepo;
 import com.example.OwnProject.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +41,11 @@ public class MessageServiceImplementation implements MessageService {
 
     @Override
     public List<Message> findByAuthorOrderById(User author) {
-        return repo.findByAuthorOrderByDate(author);
+        return repo.findByAuthorOrderById(author);
     }
 
     @Override
-    public List<Message> findByReceiverOrderById(User receiver) { return repo.findByAuthorOrderByDate(receiver);}
+    public List<Message> findByReceiverOrderById(User receiver) { return repo.findByReceiverOrderById(receiver);}
 
     @Override
     public List<Message> findAll() {

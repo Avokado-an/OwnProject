@@ -14,14 +14,19 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
+
     private UserServiceImplementation userServiceImplementation;
+
+    @Autowired
+    public void setUserServiceImplementation(UserServiceImplementation userServiceImplementation) {
+        this.userServiceImplementation = userServiceImplementation;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers( "/", "/registration", "/static/**").permitAll()
+                .antMatchers( "/registration", "/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

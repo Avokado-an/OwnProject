@@ -1,5 +1,8 @@
+<#ftl output_format="HTML"/>
 <#import "parts/basic.ftlh" as base>
 <#import "parts/loginhelper.ftlh" as log>
+
+<#assign  sec=JspTaglibs["http://www.springframework.org/security/tags"] />
 
 <@base.page>
     <div>
@@ -11,17 +14,28 @@
         </form>
     </div>
     <#list messages as message>
-        <div>
-            <span>${message.text}</span>
-            <span style="opacity: 0.5">
-                ${message.date?time}
+        <#if message.author.equals(currentUser)>
+            <div style="text-align: center">
+                <span>${message.text}</span>
+                <span style="opacity: 0.5">
+                (${message.date?time})
             </span>
-        </div>
+            </div>
+        <#else>
+            <div style="text-align: left">
+                <span style="opacity: 0.5">${message.author.getUsername()}:</span>
+                <span>${message.text}</span>
+                <span style="opacity: 0.5">
+                (${message.date?time})
+            </span>
+            </div>
+        </#if>
     <#else>
         <div>
             No messages
         </div>
     </#list>
-    <a href="/">Back</a>
-
+    <div style="text-align: left">
+        <a href="/">Back</a>
+    </div>
 </@base.page>

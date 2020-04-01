@@ -1,6 +1,6 @@
 package com.example.OwnProject.service.Implementation;
 
-import com.example.OwnProject.domain.User;
+import com.example.OwnProject.Entites.User;
 import com.example.OwnProject.repos.UserRepo;
 import com.example.OwnProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +24,9 @@ public class UserServiceImplementation implements UserService {
     public User findByUsername(String receiver) throws UsernameNotFoundException{
         return userRepo.findByUsername(receiver);
     }
+
+    //@Override
+    //public Set<User> findByCurrent(User current) {
+        //return userRepo.findByCurrent(current);
+    //}
 }
